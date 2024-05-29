@@ -1,0 +1,55 @@
+near delete ft.arepa.testnet arepa.testnet
+near create-account ft.arepa2.testnet --masterAccount arepa2.testnet --initialBalance 15
+
+cargo build --target wasm32-unknown-unknown --release
+near deploy ft.arepa2.testnet target/wasm32-unknown-unknown/release/arepita_token.wasm
+
+near call ft.arepa2.testnet new_default_meta '{"owner_id": "ft.arepa2.testnet", "total_supply": "21000000"}' --accountId ft.arepa2.testnet --gas 300000000000000
+
+near call ft.arepa2.testnet storage_deposit '{"account_id":"arepa2.testnet"}' --accountId arepa2.testnet --amount 0.00125
+near call ft.arepa2.testnet ft_transfer '{"receiver_id": "arepa2.testnet", "amount": "50000000"}' --accountId ft.arepa2.testnet --depositYocto 1
+
+
+
+
+NEAR_ENV=mainnet near login
+NEAR_ENV=mainnet near delete ft.arepita.near arepita.near
+
+NEAR_ENV=mainnet near deploy arepita.near target/wasm32-unknown-unknown/release/arepita_token.wasm
+NEAR_ENV=mainnet near call arepita.near new_default_meta '{"owner_id": "arepita.near", "total_supply": "21000000000"}' --accountId arepita.near
+
+
+
+near call ft.arepita.near storage_deposit '{"account_id":"daov5.metademocracia.testnet"}' --accountId hpalencia.testnet --amount 0.00125
+near call ft.arepita.near ft_transfer '{"receiver_id": "daov5.metademocracia.testnet", "amount": "50000000"}' --accountId ft.arepita.near --depositYocto 1
+
+
+
+near call ft.arepita.near storage_deposit '{"account_id":"5d18671d5948cd3348ff4fe4578518ed25a77ee73d18e4ee2b21b335d1585df7"}' --accountId hpalencia.testnet --amount 0.00125
+near call ft.arepita.near ft_transfer '{"receiver_id": "5d18671d5948cd3348ff4fe4578518ed25a77ee73d18e4ee2b21b335d1585df7", "amount": "50000000"}' --accountId ft.arepita.near --depositYocto 1
+
+near call ft.arepita.near storage_deposit '{"account_id":"prueba90.testnet"}' --accountId hpalencia.testnet --amount 0.00125
+near call ft.arepita.near ft_transfer '{"receiver_id": "prueba90.testnet", "amount": "50000000"}' --accountId ft.arepita.near --depositYocto 1
+
+
+
+near view ft.arepita.near ft_balance_of '{"account_id": "hpalencia.testnet"}'
+
+near view ft.arepita.near ft_balance_of '{"account_id": "ft.arepita.near"}'
+
+near view ft.arepita.near ft_balance_of '{"account_id": "andromeda2018.v17.nearp2p.testnet"}'
+
+
+
+near view ft.arepita.near ft_metadata
+near view ft.arepita.near ft_total_supply
+
+
+
+near call ft.arepita.near mint '{"amount": "40000000000", "account_id": "ft.arepita.near"}' --accountId ft.arepita.near
+
+
+
+'20998999843700000'
+'20998999843700000'
+'20999039843700000'
